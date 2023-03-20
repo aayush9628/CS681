@@ -45,27 +45,38 @@ public class DataProcessing2 implements Runnable{
                 }).collect(Collectors.toList());
 
         if(housesWithLowCrimeRateLowPtratio.size() == 0){
-            System.out.println("2. As there are no such entries in the dataset, the high, the low and the average for all is undefined");
-            return;
+            System.out.println("As there are no such entries with the condition of crime rate less than 10% and PT ratio less than 10% in the dataset, the high, the low and the average for all is undefined");
         }
+        housesWithLowCrimeRateLowPtratio = csv.stream()
+                .filter(lst -> {
+                    if(lst.get(0) < 0.1){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }).collect(Collectors.toList());
 
         double averagePrice = housesWithLowCrimeRateLowPtratio.stream().map(lst -> lst.get(13)).collect(Collectors.averagingDouble(val -> val.doubleValue()));
         double highPrice = housesWithLowCrimeRateLowPtratio.stream().map(lst -> lst.get(13)).max(Comparator.comparing(val -> val.doubleValue())).get();
         double lowPrice = housesWithLowCrimeRateLowPtratio.stream().map(lst -> lst.get(13)).min(Comparator.comparing(val -> val.doubleValue())).get();
-        System.out.println("2. Average house price for houses with low crime rate and low PT ratio: " + averagePrice);
-        System.out.println("2. High house price for houses with low crime rate and low PT ratio: " + highPrice);
-        System.out.println("2. Low house price for houses with low crime rate and low PT ratio: " + lowPrice);
+        System.out.println("Average house price for houses with low crime rate: " + averagePrice);
+        System.out.println("High house price for houses with low crime rate: " + highPrice);
+        System.out.println("Low house price for houses with low crime rate: " + lowPrice);
         double averageNox = housesWithLowCrimeRateLowPtratio.stream().map(lst -> lst.get(4)).collect(Collectors.averagingDouble(val -> val.doubleValue()));
         double highNox = housesWithLowCrimeRateLowPtratio.stream().map(lst -> lst.get(4)).max(Comparator.comparing(val -> val.doubleValue())).get();
         double lowNox = housesWithLowCrimeRateLowPtratio.stream().map(lst -> lst.get(4)).min(Comparator.comparing(val -> val.doubleValue())).get();
-        System.out.println("2. Average NOX for houses with low crime rate and low PT ratio: " + averageNox);
-        System.out.println("2. High NOX for houses with low crime rate and low PT ratio: " + highNox);
-        System.out.println("2. Low NOX for houses with low crime rate and low PT ratio: " + lowNox);
+        System.out.println("Average NOX for houses with low crime rate: " + averageNox);
+        System.out.println("High NOX for houses with low crime rate: " + highNox);
+        System.out.println("Low NOX for houses with low crime rate: " + lowNox);
         double averageRM = housesWithLowCrimeRateLowPtratio.stream().map(lst -> lst.get(5)).collect(Collectors.averagingDouble(val -> val.doubleValue()));
         double highRM = housesWithLowCrimeRateLowPtratio.stream().map(lst -> lst.get(5)).max(Comparator.comparing(val -> val.doubleValue())).get();
         double lowRM = housesWithLowCrimeRateLowPtratio.stream().map(lst -> lst.get(5)).min(Comparator.comparing(val -> val.doubleValue())).get();
-        System.out.println("2. Average rooms for houses with low crime rate and low PT ratio: " + averageRM);
-        System.out.println("2. High rooms for houses with low crime rate and low PT ratio: " + highRM);
-        System.out.println("2. Low rooms for houses with low crime rate and low PT ratio: " + lowRM);
+        System.out.println("Average rooms for houses with low crime rate: " + averageRM);
+        System.out.println("High rooms for houses with low crime rate: " + highRM);
+        System.out.println("Low rooms for houses with low crime rate: " + lowRM);
+    }
+
+    public static void main(String[] args) {
+        
     }
 }

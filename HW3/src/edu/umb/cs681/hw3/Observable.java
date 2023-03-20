@@ -23,4 +23,8 @@ public class Observable<WkSummary> {
     public void notifyObservers(WkSummary event){
         observers.forEach((observer) -> observer.update(this, event));
     }
+
+    public static void main(String[] args) {
+
+    }
 }

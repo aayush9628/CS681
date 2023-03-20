@@ -49,4 +49,8 @@ public class DataProcessing1 implements Runnable {
         System.out.println("1. High house price near charles river: " + high);
         System.out.println("1. Low house price near charles river: " + low);
     }
+
+    public static void main(String[] args) {
+
+    }
 }

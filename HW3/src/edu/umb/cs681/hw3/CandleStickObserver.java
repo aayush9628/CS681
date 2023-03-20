@@ -11,4 +11,8 @@ public class CandleStickObserver implements Observer<WkSummary> {
         System.out.println("Low Price: " + event.getLow());
         System.out.println("Sender: " + sender);
     }
+
+    public static void main(String[] args) {
+
+    }
 }

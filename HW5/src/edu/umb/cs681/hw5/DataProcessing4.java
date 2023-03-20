@@ -56,4 +56,8 @@ public class DataProcessing4 implements Runnable{
         double taxRateForMin = minHouseAgeList.stream().map(lst -> lst.get(9)).collect(Collectors.averagingDouble(x -> x.doubleValue()));
         System.out.println("4. Average Tax rate of the house with lowest house age: " + taxRateForMin);
     }
+
+    public static void main(String[] args) {
+
+    }
 }

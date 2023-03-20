@@ -6,6 +6,13 @@ public class Summary {
     private double high;
     private double low;
 
+    public Summary(double open, double close, double high, double low){
+        this.open = open;
+        this.close = close;
+        this.high = high;
+        this.low = low;
+    }
+
     public double getOpen() {
         return open;
     }
@@ -36,5 +43,9 @@ public class Summary {
 
     public void setLow(double low) {
         this.low = low;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

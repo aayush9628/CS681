@@ -50,4 +50,8 @@ public class DataProcessing3 implements Runnable{
         double price = priceOfHouseList.stream().map(lst -> lst.get(13)).max(Comparator.comparing(val -> val.doubleValue())).get();
         System.out.println("3. Price of the house with highest room in the top 50 cheapest houses: " + price);
     }
+
+    public static void main(String[] args) {
+
+    }
 }

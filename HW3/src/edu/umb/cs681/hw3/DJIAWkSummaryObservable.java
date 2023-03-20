@@ -29,13 +29,14 @@ public class DJIAWkSummaryObservable extends Observable<WkSummary> {
     }
 
     public void addSummary(DSummary dSummary){
-//        List<Double> dSmry = new ArrayList<>();
-//        dSmry.add(dSummary.getOpen());
-//        dSmry.add(dSummary.getHigh());
-//        dSmry.add(dSummary.getLow());
-//        dSmry.add(dSummary.getClose());
-//        this.collectionSummary.add(dSmry);
-        WkSummary wkSummary = new WkSummary();
+        List<Double> dSmry = new ArrayList<>();
+        dSmry.add(null);
+        dSmry.add(dSummary.getOpen());
+        dSmry.add(dSummary.getHigh());
+        dSmry.add(dSummary.getLow());
+        dSmry.add(dSummary.getClose());
+        this.collectionSummary.add(dSmry);
+        WkSummary wkSummary = new WkSummary(0.0, 0.0, 0.0, 0.0);
         double open = this.collectionSummary.stream().map(lst -> lst.get(1)).collect(Collectors.averagingDouble(x -> x));
         double high = this.collectionSummary.stream().map(lst -> lst.get(2)).max(Comparator.comparing(x -> x.doubleValue())).get();
         double low = this.collectionSummary.stream().map(lst -> lst.get(3)).min(Comparator.comparing(x -> x.doubleValue())).get();
@@ -66,6 +67,6 @@ public class DJIAWkSummaryObservable extends Observable<WkSummary> {
 
         observable.collectionSummary.remove(observable.collectionSummary.get(0));
         observable.addObserver(new CandleStickObserver());
-        observable.addSummary(new DSummary());
+        observable.addSummary(new DSummary(34400.0, 32004.0, 35005.0, 33333.0));
     }
 }

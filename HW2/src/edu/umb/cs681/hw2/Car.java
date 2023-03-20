@@ -83,7 +83,7 @@ public class Car {
                     result.setAverage(val / result.getNumCarsExamined());
                     return result;
                 },(finalResult, intermediateResult) -> finalResult).getAverage();
-        System.out.println(average);
+        System.out.println("Average car price is: " + average);
     }
 }
 
@@ -109,5 +109,9 @@ class CarPriceResultHolder{
 
     public void setAverage(double average) {
         this.average = average;
+    }
+
+    public static void main(String[] args) {
+
     }
 }
