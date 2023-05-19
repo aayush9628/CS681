@@ -1,0 +1,69 @@
+<!--  To run this build script, type:
+
+      ant -f hw.xml
+
+      on a shell.
+-->
+<project name="build" basedir="."  default="clean">
+    <property name="src" location="src" />
+    <property name="bin" location="bin" />
+
+    <path id="classpath">
+        <pathelement location="${bin}" />
+    </path>
+
+    <target name="init">
+        <mkdir dir="${bin}"/>
+<!--    <echo message="CLASSPATH: ${toString:classpath}" />-->
+    </target>
+
+    <target name="resolve" depends="init"
+            description="--> Download JAR files (listed in ivy.xml) to the 'lib' directory.">
+    </target>
+
+    <target name="compile" depends="resolve">
+        <javac srcdir="${src}" destdir="${bin}" includeAntRuntime="no">
+            <classpath refid="classpath"/>
+            <include name="edu/umb/cs681/hw19/*.java"/>
+            <!-- include name="edu/umb/cs680/junit5intro/Calculator.java"/-->
+        </javac>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="edu.umb.cs681.hw19.StockEvent"
+              classpathref="classpath"
+              fork="true"/>
+        <java classname="edu.umb.cs681.hw19.Observer"
+              classpathref="classpath"
+              fork="true"/>
+        <java classname="edu.umb.cs681.hw19.Observable"
+              classpathref="classpath"
+              fork="true"/>
+        <java classname="edu.umb.cs681.hw19.StockQuoteObservable"
+              classpathref="classpath"
+              fork="true"/>
+        <java classname="edu.umb.cs681.hw19.LineChartObserver"
+              classpathref="classpath"
+              fork="true"/>
+        <java classname="edu.umb.cs681.hw19.TableObserver"
+              classpathref="classpath"
+              fork="true"/>
+        <java classname="edu.umb.cs681.hw19.ThreeDObserver"
+              classpathref="classpath"
+              fork="true"/>
+        <java classname="edu.umb.cs681.hw19.DataHandler"
+              classpathref="classpath"
+              fork="true"/>
+    </target>
+
+    <target name="clean" depends="run">
+        <delete includeemptydirs="true">
+            <fileset dir="${bin}/edu/umb/cs681/hw19" includes="**/*"/>
+<!--            <fileset dir="${test.bin}/edu/umb/cs681/hw19" includes="**/*"/>-->
+        </delete>
+    </target>
+
+    <target name="clean-cache"
+            description="--> clean the ivy cache (by default ~/.ivy2/cache)">
+    </target>
+</project>
